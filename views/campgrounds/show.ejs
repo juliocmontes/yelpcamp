@@ -11,25 +11,35 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div class="card">
+            <div class="card mt-3">
                 <img class="card-image-top" src="<%= campground.image %>" alt="">
                 <div class="card-body">
-                    <h3 class="text-right">$10</h3>
+                    <h3 class="card-text text-right">$10</h3>
                     <h4 class="card-title"><a href=""><%= campground.name %></a></h4>
                     <p class="card-text"><%= campground.description %></p>
-                    <a name="submitComment" id="" class="btn btn-primary"
-                        href="/campgrounds/<%= campground._id %>/comments/new " role="button">New Comment</a>
+                </div>
+                <div class="card-body bg-light">
+                    <div class="text-right">
+                        <a name="submitComment" id="" class="btn btn-success"
+                            href="/campgrounds/<%= campground._id %>/comments/new " role="button">New Comment</a>
+                    </div>
+                    <% campground.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <%= comment.author %>
+                            <span class="text-right">10 days ago</span>
+                            <p><%= comment.text %></p>
+                        </div>
+                    </div>
+                    <% })%>
                 </div>
             </div>
         </div>
-
-        <% campground.comments.forEach(function(comment){ %>
-        <p>
-            <strong><%= comment.author %></strong>
-            <%= comment.text %>
-        </p>
-        <% })%>
     </div>
+</div>
 
 
-    <% include ../partials/footer %>
+
+
+
+<% include ../partials/footer %>
