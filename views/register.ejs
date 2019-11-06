@@ -1,0 +1,26 @@
+<% include partials/header %>
+
+<div class="container">
+    <form action="/register" method="POST">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <label for="userEmail">Email</label>
+                    <input type="email" name="username" id="userEmail" class="form-control" placeholder="Enter email"
+                        aria-describedby="helpId">
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <label for="userPassword">Password</label>
+                    <input type="password" name="password" id="userPassword" class="form-control"
+                        placeholder="Enter password" aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">Must be between 18 - 32 characters long.</small>
+                </div>
+                <button type="submit" class="btn btn-dark block btn-block">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<% include partials/footer %>
