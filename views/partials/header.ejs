@@ -17,8 +17,12 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between mb-2">
     <a class="navbar-brand nav-link" href="/">Vibe Oakland</a>
     <div class="navbar-nav px-2">
+      <% if (!currentUser) { %>
       <a class="nav-item nav-link" href="/login">Login</a>
-      <a class="nav-item nav-link" href="/register">Sign Up</a>
+      <a class="nav-item nav-link" href="/register">Sign Up</a>ƒ
+      <% } else { %>
+      <a class="nav-link" href="#">Signed in as <%= currentUser.username %></a>
       <a class="nav-item nav-link" href="/logout">Logout</a>
+      <%    } %>
     </div>
   </nav>
