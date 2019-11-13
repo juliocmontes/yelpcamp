@@ -1,12 +1,9 @@
 const User = require('./models/user'),
-	Campground = require('./models/campground'),
-	Comment = require('./models/comment'),
 	express = require('express'),
 	bodyParser = require('body-parser'),
 	mongoose = require('mongoose'),
 	seedDB = require('./seeds'),
 	passport = require('passport'),
-	passportLocalMongoose = require('passport-local-mongoose'),
 	LocalStrategy = require('passport-local'),
 	session = require('express-session'),
 	methodOverride = require('method-override'),
@@ -32,14 +29,12 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (er
 });
 
 // Initializing App
-seedDB();
 app.set('view engine', 'ejs'); // set ejs as default view engine, won't need .ejs extension below
 app.use(methodOverride('_method')); // allows us to use PUT/Delete calls in forms
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public'))); // sets path for CSS/static assets
 app.use(expressSanitizer()); // Keep JS from being injected
 app.use(flash());
-
 
 app.use(
 	session({
@@ -49,6 +44,7 @@ app.use(
 	})
 );
 
+// Passport Config
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -59,6 +55,8 @@ app.use(function(req, res, next) {
 	next();
 });
 
+// seedDB(); // seed the database 
+
 app.use(indexRoutes);
 app.use(campgroundRoutes);
 app.use(commentRoutes);
@@ -66,3 +64,5 @@ app.use(commentRoutes);
 app.listen(5050, function() {
 	console.log('Now hosting on http://localhost:5050/');
 });
+
+
